@@ -3,9 +3,18 @@
 {% block "title" %}HOME{% endblock %}
 
 {% block "content" %}
-<h1>Posts</h1>
 {% for post in posts %}
-<p>{{ post }}</p>
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <a class="mr-2">{{ post.author }}</a>
+            <small>{{ post.date|date:"Y-m-d, f" }}</small>
+            <h2><a class="class-article">{{ post.title }}</a></h2>
+            <p class="class-content">{{ post.content|truncatewords:"30" }}</p>
+            <a>Comments: {{ post.comments_count }}</a>
+        </div>
+    </div>
+</article>
 <hr>
 {% endfor %}
 {% endblock %}

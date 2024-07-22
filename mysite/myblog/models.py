@@ -9,6 +9,9 @@ class Post(models.Model):
     date = models.DateTimeField(verbose_name="Date", auto_now_add=True)
     author = models.ForeignKey(to=User, verbose_name="Author", on_delete=models.CASCADE)
 
+    def comments_count(self):
+        return self.comments.count()
+
     def __str__(self):
         return f"{self.title} ({self.author})"
 
@@ -16,7 +19,7 @@ class Post(models.Model):
         ordering = ['-date']
 
 class Comment(models.Model):
-    post = models.ForeignKey(to="Post", verbose_name="Post", on_delete=models.CASCADE)
+    post = models.ForeignKey(to="Post", verbose_name="Post", on_delete=models.CASCADE, related_name="comments")
     content = models.TextField(verbose_name="Content", max_length=1000)
     date = models.DateTimeField(verbose_name="Date", auto_now_add=True)
     author = models.ForeignKey(to=User, verbose_name="Author", on_delete=models.CASCADE)
