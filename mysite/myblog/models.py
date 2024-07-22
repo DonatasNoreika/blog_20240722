@@ -9,6 +9,11 @@ class Post(models.Model):
     date = models.DateTimeField(verbose_name="Date", auto_now_add=True)
     author = models.ForeignKey(to=User, verbose_name="Author", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return f"{self.title} ({self.author})"
+
+    class Meta:
+        ordering = ['-date']
 
 class Comment(models.Model):
     post = models.ForeignKey(to="Post", verbose_name="Post", on_delete=models.CASCADE)
