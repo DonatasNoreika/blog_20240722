@@ -1,20 +1,18 @@
 {% extends "base.html" %}
 
-{% block "title" %}HOME{% endblock %}
+{% block "title" %}Post{% endblock %}
 
 {% block "content" %}
-{% for post in posts %}
 <article class="media content-section">
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2">{{ post.author }}</a>
             <small>{{ post.date|date:"Y-m-d, f" }}</small>
             <h2><a class="class-article">{{ post.title }}</a></h2>
-            <p class="class-content">{{ post.content|truncatewords:"30" }}<a href="{% url 'post' post.pk %}">Read More</a></p>
+            <p class="class-content">{{ post.content }}</p>
             <a>Comments: {{ post.comments_count }}</a>
         </div>
     </div>
 </article>
 <hr>
-{% endfor %}
 {% endblock %}
